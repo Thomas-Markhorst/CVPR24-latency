@@ -14,3 +14,10 @@ python measure_latency.py --model_name RevCol-T
 ```
 python measure_latency.py --model_name MBNetV2
 ```
+
+```
+python measure_latency.py --model_name MBNetV3
+```
+```
+python measure_latency.py --model_name MBNetV3_075
+```

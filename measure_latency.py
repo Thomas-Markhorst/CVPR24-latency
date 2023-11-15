@@ -3,6 +3,7 @@ import json
 import os
 import torch
 
+from MobileNetV3 import MobileNetV3
 from RevCol_models.revcol import revcol_tiny
 from efficientnetv2 import EfficientNetV2
 from measure_FLOPs import *
@@ -93,7 +94,11 @@ if __name__ == '__main__':
     elif args.model_name == 'RevCol-T':
         model = revcol_tiny(False, num_classes=NUM_CLASSES)
     elif args.model_name == 'MBNetV2':
-        model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2', pretrained=False)
+        model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2', pretrained=False, )
+    elif args.model_name == 'MBNetV3':
+        model = MobileNetV3(mode='small', classes_num=100,)
+    elif args.model_name == 'MBNetV3_075':
+        model = MobileNetV3(mode='small', classes_num=100, width_multiplier=0.75)
 
     lat, flops = get_lat_ms_flops(model, CUDA=True)
 
