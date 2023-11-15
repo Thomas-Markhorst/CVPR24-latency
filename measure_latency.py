@@ -88,6 +88,8 @@ if __name__ == '__main__':
                                pretrained=False)
     elif args.model_name == 'RevCol-T':
         model = revcol_tiny(False, num_classes=NUM_CLASSES)
+    elif args.model_name == 'MBNetV2':
+        model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2', pretrained=False)
 
     lat, flops = get_lat_ms_flops(model, CUDA=True)
 
