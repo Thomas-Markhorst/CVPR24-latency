@@ -67,7 +67,11 @@ def get_lat_ms_flops(model, CUDA=True):
     flop_shape = SHAPE
     if len(flop_shape) == 4:
         flop_shape[0] = 1
-    flops = calculate_FLOPs_in_M(model, flop_shape)
+    try:
+        flops = calculate_FLOPs_in_M(model, flop_shape)
+    except:
+        print("FLOPs failed but that is okay")
+        flops = -1
     return lat, flops
 
 
@@ -88,9 +92,11 @@ if __name__ == '__main__':
                                pretrained=False)
     elif args.model_name == 'RevCol-T':
         model = revcol_tiny(False, num_classes=NUM_CLASSES)
+    elif args.model_name == 'MBNetV2':
+        model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2', pretrained=False)
 
     lat, flops = get_lat_ms_flops(model, CUDA=True)
 
     with open('results.txt', 'a') as fw:
-        fw.write(f'{args.model_name}    Latency: {lat}      FLOPs: {flops}')
+        fw.write(f'{args.model_name}    Latency: {lat}      FLOPs: {flops}\n')
 
