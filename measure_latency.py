@@ -5,6 +5,7 @@ import torch
 
 from MobileNetV3 import MobileNetV3
 from RevCol_models.revcol import revcol_tiny
+from denoisers.LPIENet import LPIENet
 from efficientnetv2 import EfficientNetV2
 from measure_FLOPs import *
 import time
@@ -99,6 +100,13 @@ if __name__ == '__main__':
         model = MobileNetV3(mode='small', classes_num=100,)
     elif args.model_name == 'MBNetV3_075':
         model = MobileNetV3(mode='small', classes_num=100, width_multiplier=0.75)
+
+    elif args.model_name == "LPIENet-XS":
+        model = LPIENet(3, 3, [8, 16, 32], [16, 8])
+    elif args.model_name == "LPIENet":
+        model = LPIENet(3, 3, [16, 32, 64], [32, 16])
+    elif args.model_name == "LPIENet-L":
+        model = LPIENet(3, 3, [32, 64, 128], [64, 32])
 
     lat, flops = get_lat_ms_flops(model, CUDA=True)
 
