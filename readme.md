@@ -22,6 +22,9 @@ python measure_latency.py --model_name MBNetV3
 python measure_latency.py --model_name MBNetV3_075
 ```
 ```
+python measure_latency.py --model_name LPIENet-XXS
+```
+```
 python measure_latency.py --model_name LPIENet-XS
 ```
 ```

@@ -101,6 +101,8 @@ if __name__ == '__main__':
     elif args.model_name == 'MBNetV3_075':
         model = MobileNetV3(mode='small', classes_num=100, width_multiplier=0.75)
 
+    elif args.model_name == "LPIENet-XXS":
+        model = LPIENet(3, 3, [4, 8, 16], [8, 4])
     elif args.model_name == "LPIENet-XS":
         model = LPIENet(3, 3, [8, 16, 32], [16, 8])
     elif args.model_name == "LPIENet":
