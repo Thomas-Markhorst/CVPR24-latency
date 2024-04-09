@@ -1,4 +1,4 @@
-You might need to install timm
+You might need to install timm!
 ```pip install timm```
 
 Simply run 
